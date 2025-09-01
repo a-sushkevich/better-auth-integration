@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DATABASE_CONNECTION } from './database-connection';
 import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
+import * as authSchema from '../auth/schema';
 @Module({
   imports: [ConfigModule],
   providers: [
@@ -14,7 +15,9 @@ import { drizzle } from 'drizzle-orm/node-postgres';
         });
 
         return drizzle(pool, {
-          schema: {},
+          schema: {
+            ...authSchema,
+          },
         });
       },
       inject: [ConfigService],
