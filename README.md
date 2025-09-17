@@ -220,7 +220,7 @@ cd apps/web && pnpm dev
 await authClient.signUp.email({
   email: "user@example.com",
   password: "securepassword",
-  name: "John Doe"
+  name: "John Doe",
 });
 ```
 
@@ -229,7 +229,7 @@ await authClient.signUp.email({
 ```typescript
 await authClient.signIn.email({
   email: "user@example.com",
-  password: "securepassword"
+  password: "securepassword",
 });
 ```
 
@@ -255,12 +255,12 @@ The authentication is configured in `apps/backend/src/app.module.ts`:
 AuthModule.forRootAsync({
   useFactory: (database, configService) => ({
     auth: betterAuth({
-      database: drizzleAdapter(database, { provider: 'pg' }),
+      database: drizzleAdapter(database, { provider: "pg" }),
       emailAndPassword: { enabled: true },
-      trustedOrigins: [configService.getOrThrow('UI_URL')],
+      trustedOrigins: [configService.getOrThrow("UI_URL")],
     }),
   }),
-})
+});
 ```
 
 ### Database Configuration
@@ -279,7 +279,7 @@ The backend includes comprehensive testing setup:
 # Unit tests
 cd apps/backend && pnpm test
 
-# E2E tests  
+# E2E tests
 cd apps/backend && pnpm test:e2e
 
 # Test coverage
@@ -306,18 +306,6 @@ Ensure all required environment variables are set in production:
 - `DATABASE_URL` - PostgreSQL connection string
 - `UI_URL` - Frontend application URL
 - `PORT` - Backend server port
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the UNLICENSED license.
 
 ## 🆘 Troubleshooting
 
